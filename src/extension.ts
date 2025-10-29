@@ -13,27 +13,21 @@ async function openUrl(url: string) {
 
 export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(
-    vscode.commands.registerCommand(
-      "quickPrMaker.makePRFromSelection",
-      async () => {
-        try {
-          await handleMakePR({ fromSelection: true });
-        } catch (error) {
-          vscode.window.showErrorMessage(`Error creating PR: ${error}`);
-        }
+    vscode.commands.registerCommand("quickPr.makePRFromSelection", async () => {
+      try {
+        await handleMakePR({ fromSelection: true });
+      } catch (error) {
+        vscode.window.showErrorMessage(`Error creating PR: ${error}`);
       }
-    ),
+    }),
 
-    vscode.commands.registerCommand(
-      "quickPrMaker.makePRFromStaged",
-      async () => {
-        try {
-          await handleMakePR({ fromSelection: false });
-        } catch (error) {
-          vscode.window.showErrorMessage(`Error creating PR: ${error}`);
-        }
+    vscode.commands.registerCommand("quickPr.makePRFromStaged", async () => {
+      try {
+        await handleMakePR({ fromSelection: false });
+      } catch (error) {
+        vscode.window.showErrorMessage(`Error creating PR: ${error}`);
       }
-    )
+    })
   );
 }
 
@@ -47,7 +41,7 @@ async function handleMakePR({ fromSelection }: { fromSelection: boolean }) {
   const rootPath = workspaceFolder.uri.fsPath;
   const git = simpleGit(rootPath);
   const currentBranch = await git.revparse(["--abbrev-ref", "HEAD"]);
-  const config = vscode.workspace.getConfiguration("quickPrMaker");
+  const config = vscode.workspace.getConfiguration("quickPr");
 
   const commitInfo = await getCommitMessageAndBranchName(config);
   if (!commitInfo) return;
@@ -137,7 +131,7 @@ async function handleMakePR({ fromSelection }: { fromSelection: boolean }) {
         await git.commit(commitMessage);
 
         progress.report({ message: "Pushing branch and opening PR..." });
-        // await finalizePRCreation(git, newBranchName);
+        await finalizePRCreation(git, newBranchName);
 
         await git.checkout(currentBranch);
         if (hasUnstagedChanges) {

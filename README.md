@@ -1,6 +1,6 @@
-# Quick PR Maker
+# Quick PR
 
-A VS Code extension that allows you to create pull requests from selected line changes with a single click.
+A VS Code extension that allows you to create pull requests from selected lines or staged changes with a single click.
 
 ## Features
 
@@ -17,21 +17,19 @@ A VS Code extension that allows you to create pull requests from selected line c
 ## Setup
 
 1. Install the extension
-2. Make sure you have GitHub CLI installed: `gh --version`
-3. Authenticate with GitHub: `gh auth login` (if not already authenticated)
-4. Configure your settings:
-   - `quickPrMaker.baseBranch`: Base branch to branch from (default: "master")
+2. Configure your Github username in settings.json (used for branch naming):
+   - `quickPr.githubUsername`: "someusername"
 
 ## Usage
 
-## From selection
+### From selection
 1. Make some changes in your code
 2. Select the lines you want to include in the PR
 3. Right-click and select "Make PR from selection" OR use Command Palette
 4. Enter your commit message (will also be used as PR title)
 5. The extension will handle the rest!
 
-## From staged changes
+### From staged changes
 1. Make some changes in your code
 2. Stage the changes
 3. Use Command Palette and select "Make PR from staged changes"
@@ -46,7 +44,7 @@ A VS Code extension that allows you to create pull requests from selected line c
 3. **Creates new branch**: Makes a new branch from the updated base
 4. **Applies changes**: Only applies your selected/staged lines to the new branch
 5. **Commits and pushes**: Commits with your message and pushes to origin
-6. **Creates PR**: Uses GitHub CLI (`gh pr create`) which respects your SSH authentication
+6. **Creates PR**: Opens the new PR screen on Github with the new branch
 7. **Restores state**: Returns to your original branch and restores stashed changes
 
 ## Development

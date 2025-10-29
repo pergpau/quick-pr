@@ -1,7 +1,7 @@
 {
-  "name": "quick-pr-maker",
-  "displayName": "Quick PR Maker",
-  "description": "Create pull requests from selected line changes",
+  "name": "quick-pr",
+  "displayName": "Quick PR",
+  "description": "Create pull requests from selected lines or staged changes",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.102.0"
@@ -15,12 +15,12 @@
   "contributes": {
     "commands": [
       {
-        "command": "quickPrMaker.makePRFromSelection",
+        "command": "quickPr.makePRFromSelection",
         "title": "Make PR from selection",
         "category": "Quick PR"
       },
       {
-        "command": "quickPrMaker.makePRFromStaged",
+        "command": "quickPr.makePRFromStaged",
         "title": "Make PR from staged changes",
         "category": "Quick PR"
       }
@@ -28,19 +28,18 @@
     "menus": {
       "editor/context": [
         {
-          "command": "quickPrMaker.makePRFromSelection",
+          "command": "quickPr.makePRFromSelection",
           "when": "editorHasSelection",
           "group": "navigation"
         }
       ]
     },
     "configuration": {
-      "title": "Quick PR Maker",
+      "title": "Quick PR",
       "properties": {
-        "quickPrMaker.githubUsername": {
+        "quickPr.githubUsername": {
           "type": "string",
-          "default": "pergpau",
-          "description": "GitHub username"
+          "description": "GitHub username (used for branch naming)"
         }
       }
     }
