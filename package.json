@@ -1,0 +1,67 @@
+{
+  "name": "quick-pr-maker",
+  "displayName": "Quick PR Maker",
+  "description": "Create pull requests from selected line changes",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.102.0"
+  },
+  "type": "module", 
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "quickPrMaker.makePRFromSelection",
+        "title": "Make PR from selection",
+        "category": "Quick PR"
+      },
+      {
+        "command": "quickPrMaker.makePRFromStaged",
+        "title": "Make PR from staged changes",
+        "category": "Quick PR"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "quickPrMaker.makePRFromSelection",
+          "when": "editorHasSelection",
+          "group": "navigation"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Quick PR Maker",
+      "properties": {
+        "quickPrMaker.githubUsername": {
+          "type": "string",
+          "default": "pergpau",
+          "description": "GitHub username"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/node": "20.x",
+    "@types/vscode": "^1.74.0",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@types/uuid": "^10.0.0",
+    "open": "^10.2.0",
+    "simple-git": "^3.19.1",
+    "uuid": "^13.0.0"
+  }
+}
