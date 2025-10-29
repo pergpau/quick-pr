@@ -263,7 +263,10 @@ async function createPatchForSelection(
   console.log("File Path:", filePath);
   console.log("Selection Start:", selectionStart);
   console.log("Selection End:", selectionEnd);
-  const diff = execGit(repoPath, `git diff -U3 -- "${filePath}"`);
+  const diff = execGit(
+    repoPath,
+    `git diff -U2 --inter-hunk-context=0 -- "${filePath}"`
+  );
 
   console.log("Diff Output:", diff);
   if (!diff) return null;
