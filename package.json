@@ -10,6 +10,17 @@
   "categories": [
     "Other"
   ],
+  "publisher": "pergpau",
+  "author": {
+    "name": "Per Gunnar Paulsen (pergpau)"
+  },
+  "pricing": "Free",
+  "icon": "images/icon_128.png",
+  "license": "See LICENSE.md",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pergpau/quick-pr"
+  },
   "activationEvents": [],
   "main": "./out/extension.js",
   "contributes": {
