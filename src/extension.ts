@@ -95,7 +95,7 @@ async function handleMakePR({ fromSelection }: { fromSelection: boolean }) {
             return;
           }
           fs.writeFileSync(patchPath, patch, "utf-8");
-
+          execGit(rootPath, `git reset`); // In case there are staged changes
           execGit(rootPath, `git apply --cached --verbose "${patchPath}"`);
         } else {
           console.log("Making PR from staged changes...");
