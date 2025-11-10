@@ -67,6 +67,12 @@ To test the extension:
 
 ## Release Notes
 
+### 0.0.3
+Bugfixes
+
+### 0.0.2
+Fully working MVP
+
 ### 0.0.1
 
 Initial release with basic PR creation functionality.
