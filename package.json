@@ -2,7 +2,7 @@
   "name": "quick-pr",
   "displayName": "Quick PR",
   "description": "Create pull requests from selected lines or staged changes",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "engines": {
     "vscode": "^1.102.0"
   },
