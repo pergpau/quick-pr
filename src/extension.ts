@@ -32,13 +32,27 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 async function handleMakePR({ fromSelection }: { fromSelection: boolean }) {
-  const workspaceFolder = vscode.workspace.workspaceFolders?.[0];
-  if (!workspaceFolder) {
-    vscode.window.showErrorMessage("No workspace folder found");
-    return;
+  let rootPath: string;
+  if (fromSelection) {
+    const editor = vscode.window.activeTextEditor;
+    if (!editor) {
+      vscode.window.showErrorMessage("No active editor");
+      return;
+    }
+    const fileWorkspaceFolder = vscode.workspace.getWorkspaceFolder(editor.document.uri);
+    if (!fileWorkspaceFolder) {
+      vscode.window.showErrorMessage("No workspace folder found for the active file");
+      return;
+    }
+    rootPath = fileWorkspaceFolder.uri.fsPath;
+  } else {
+    const workspaceFolder = vscode.workspace.workspaceFolders?.[0];
+    if (!workspaceFolder) {
+      vscode.window.showErrorMessage("No workspace folder found");
+      return;
+    }
+    rootPath = workspaceFolder.uri.fsPath;
   }
-
-  const rootPath = workspaceFolder.uri.fsPath;
   const git = simpleGit(rootPath);
   const currentBranch = await git.revparse(["--abbrev-ref", "HEAD"]);
   const config = vscode.workspace.getConfiguration("quickPr");

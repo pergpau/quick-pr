@@ -67,6 +67,9 @@ To test the extension:
 
 ## Release Notes
 
+### 0.0.4
+Bugfixes for supporting multi-repo workspaces
+
 ### 0.0.3
 Bugfixes
 
