@@ -63,6 +63,7 @@ To test the extension:
 
 ## Known Issues
 
+- NOTE: All use is at your own responsibility
 - Currently only supports GitHub repositories
 
 ## Release Notes
